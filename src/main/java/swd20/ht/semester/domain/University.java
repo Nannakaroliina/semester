@@ -15,19 +15,19 @@ public class University {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String universityName;
+	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "university")
 	private List<Course> courselist;
 	
 	public University() {
 		super();
-		this.universityName = null;
+		this.name = null;
 	}
 
-	public University(String universityName) {
+	public University(String name) {
 		super();
-		this.universityName = universityName;
+		this.name = name;
 	}
 
 	public long getId() {
@@ -38,12 +38,12 @@ public class University {
 		this.id = id;
 	}
 
-	public String getUniversityName() {
-		return universityName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUniversityName(String universityName) {
-		this.universityName = universityName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Course> getCourselist() {
@@ -56,7 +56,7 @@ public class University {
 
 	@Override
 	public String toString() {
-		return "University [id=" + id + ", universityName=" + universityName + "]";
+		return "University [id=" + id + ", universityName=" + name + "]";
 	}
 
 }

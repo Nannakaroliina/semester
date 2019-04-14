@@ -14,7 +14,7 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String courseName;
+	private String name;
 	private String deadline;
 	private int credits;
 	
@@ -24,14 +24,14 @@ public class Course {
 	
 	public Course( ) {
 		super();
-		this.courseName = null;
+		this.name = null;
 		this.deadline = null;
 		this.credits = 0;
 	}
 
-	public Course(String courseName, String deadline, int credits, University university) {
+	public Course(String name, String deadline, int credits, University university) {
 		super();
-		this.courseName = courseName;
+		this.name = name;
 		this.deadline = deadline;
 		this.credits = credits;
 		this.university = university;
@@ -48,13 +48,13 @@ public class Course {
 	}
 
 
-	public String getCourseName() {
-		return courseName;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDeadline() {
@@ -88,10 +88,10 @@ public class Course {
 	@Override
 	public String toString() {
 		if  (this.university != null) {
-			return "Course [id=" + id + ", courseName=" + courseName + ", deadline=" + deadline + ", credits=" + credits
+			return "Course [id=" + id + ", name=" + name + ", deadline=" + deadline + ", credits=" + credits
 				+ ", university=" + university + "]";
 		} else {
-			return "Course [id=" + id + ", courseName=" + courseName + ", deadline=" + deadline + ", credits=" + credits + "]";
+			return "Course [id=" + id + ", name=" + name + ", deadline=" + deadline + ", credits=" + credits + "]";
 		}
 	}
 	

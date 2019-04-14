@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+	
+	<!-- CSS files -->
+	<link rel="stylesheet" type="text/css" href="../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}" />
+	
+	<title>Semester App</title>
+</head>
+<body>
+	<div class="ui container">
+		<div class="ui hidden divider"></div>
+		<h1 class="ui header">Welcome to Semester App!</h1>
+		<h5>Logged in as [[${#httpServletRequest.remoteUser}]]</h5>
+		<form class="ui form" th:action="@{/logout}" method="post">
+			<button class="ui button" type="submit">Sign Out</button>
+		</form>
+		
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>Course</th>
+					<th>Final finishing day</th>
+					<th>Credits</th>
+					<th>University</th>
+					<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+					<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="course : ${courses}">
+					<td th:text="${course.name}"></td>
+					<td th:text="${course.deadline}"></td>
+					<td th:text="${course.credits}"></td>
+					<td th:text="${course.university.name}"></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${course.id})}"><i class="edit icon"></i></a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${course.id})}"><i class="trash alternate outline icon"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a class="ui button" href="/add">Add new Course</a> 
+		<div class="ui hidden divider"></div>
+	</div>
+	
+	<!-- JavaScript files -->
+	<script type="text/javascript" src="../static/css/semantic.min.js" th:src="@{/css/semantic.min.js}"></script>
+</body>
+</html>
