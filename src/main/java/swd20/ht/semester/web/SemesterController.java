@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import swd20.ht.semester.domain.Course;
 import swd20.ht.semester.domain.CourseRepository;
+import swd20.ht.semester.domain.University;
 import swd20.ht.semester.domain.UniversityRepository;
 
 @Controller
@@ -87,5 +88,19 @@ public class SemesterController {
 		model.addAttribute("course", crepository.findById(courseId));
 		model.addAttribute("universities", urepository.findAll());
 		return "edit";
+	}
+	
+	// Add new university
+	@RequestMapping(value="/add2")
+	public String addUniversity(Model model) {
+		model.addAttribute("university", new University());
+		return "adduniversity";
+	}
+	
+	// Save the university
+	@RequestMapping(value="/save2", method = RequestMethod.POST)
+	public String saveUniversity(University university) {
+		urepository.save(university);
+		return "redirect:../courselist";
 	}
 }
